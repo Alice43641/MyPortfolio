@@ -97,7 +97,7 @@ nav ul {
 
 /* Sections */
 section {
-    padding: 5em 2em; /* give enough space under fixed nav */
+    padding: 2em 2em; /* give enough space under fixed nav */
     min-height: 100vh; /* makes sections full screen height */
 }
 
@@ -594,3 +594,4 @@ footer .content {
     height: auto;
   }
 }
+
