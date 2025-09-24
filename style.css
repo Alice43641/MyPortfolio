@@ -607,11 +607,12 @@ footer {
   }
 
   .home-text .btn, 
-.home-text .btn-outline {
-    padding: 0.2em 0.5em;
-    font-size: 0.7em;
+  .home-text .btn-outline {
+    padding: 0.5em 0.5em;
+    font-size: 0.8em;
 }
 }
+
 
 
 
