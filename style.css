@@ -606,7 +606,7 @@ footer {
   }
     
   .service-card {
-    width: 150px;   /* half of 220px */
+    width: 100px;   /* half of 220px */
     height: 165px;
     padding: 1em 0.5em;
   }
@@ -638,5 +638,6 @@ footer {
       max-width: 300px;
     }
 }
+
 
 
