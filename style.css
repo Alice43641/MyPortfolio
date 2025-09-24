@@ -605,5 +605,11 @@ footer {
   section h2 {
     font-size: 1.2rem; /* smaller section headings */
   }
+
+  .home-text .btn, 
+.home-text .btn-outline {
+    padding: 0.5em 1em;
+    font-size: 1em;
+}
 }
 
