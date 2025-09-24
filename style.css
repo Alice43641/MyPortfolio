@@ -263,6 +263,7 @@ h2 {
     font-size: 1.5em;
     color: white;
     white-space: nowrap;
+    color: rgba(255, 251, 0, 0.397);
 }
 
 .role {
@@ -309,14 +310,6 @@ h2 {
     justify-content: space-between;
 }
 
-.accordion {
-    cursor: pointer;
-    user-select: none;
-    position: relative;
-    color: white;
-}
-
-
 .about-section h3 {
     color: rgb(223, 223, 88);
     margin-bottom: 0.5em;
@@ -346,19 +339,42 @@ h2 {
         list-style-type: none;
     }
 }
-
-.accordion {
-    cursor: pointer;
-    user-select: none;
-    position: relative;
-    color: antiquewhite;
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 2 per row */
+  gap: 20px; /* spacing between items */
+  max-width: 600px; /* optional: center the grid */
+  margin: 0 auto;
 }
 
-.panel { 
-    margin-top: 0.5em;
-    padding-left: 1.5em;
-    color: #ccc;
+.tech {
+  background: #111;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  transition: transform 0.3s;
 }
+
+.tech img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.tech p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.tech:hover {
+  transform: translateY(-5px);
+}
+
+
+
 
 /*Services section*/
 .services {
@@ -611,8 +627,10 @@ footer {
     padding: 0.5em 0.5em;
     font-size: 0.8em;
 }
+.skills-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 per row */
+      gap: 20px; /* spacing between items */
+      max-width: 300px;
+    }
 }
-
-
-
 
