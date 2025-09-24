@@ -16,7 +16,7 @@ navLinks.forEach(link => {
 });
 
 const roleSpan = document.querySelector(".role");
-const roles = ["Frontend Developer", "UI/UX Developer"];
+const roles = ["Software Engineering", "Web Development", "Mobile Development", "UI/UX Designing"];
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
