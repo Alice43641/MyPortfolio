@@ -617,7 +617,8 @@ footer {
 .skills-grid {
       grid-template-columns: repeat(2, 1fr); /* 2 per row */
       gap: 20px; /* spacing between items */
-      max-width: 300px;
+      max-width: 300px
     }
 }
+
 
