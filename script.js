@@ -1,72 +1,107 @@
-// Select elements
-const menuToggle = document.querySelector('.menu-toggle'); // hamburger button
-const navbar = document.querySelector('nav ul');           // the <ul> inside nav
+// Get the menu elements
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
 
-// Toggle menu open/close
-menuToggle.addEventListener('click', () => {
-    navbar.classList.toggle('show');
+// Open and close the mobile menu
+menuBtn.addEventListener("click", function () {
+    const menuOpen = navLinks.classList.toggle("active");
+
+    // Change the menu icon
+    menuBtn.innerHTML = menuOpen
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+
+    // Update accessibility attributes
+    menuBtn.setAttribute("aria-expanded", menuOpen);
+    menuBtn.setAttribute(
+        "aria-label",
+        menuOpen ? "Close navigation menu" : "Open navigation menu"
+    );
 });
 
-// Close menu when a link is clicked (optional for better UX on mobile)
-const navLinks = document.querySelectorAll('nav ul li a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navbar.classList.remove('show');
+// Close the menu when a navigation link is clicked
+const navItems = navLinks.querySelectorAll("a");
+
+navItems.forEach(function (link) {
+    link.addEventListener("click", function () {
+        closeMenu();
     });
 });
 
-const roleSpan = document.querySelector(".role");
-const roles = ["Software Engineering", "Web Development", "Mobile Development", "UI/UX Designing"];
-let roleIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-let typingSpeed = 100;
+// Close the menu when the user scrolls
+window.addEventListener("scroll", function () {
+    closeMenu();
+});
 
-function typeRole() {
-    const currentRole = roles[roleIndex];
+// Close the mobile menu
+function closeMenu() {
+    navLinks.classList.remove("active");
+
+    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.setAttribute("aria-label", "Open navigation menu");
+}
+
+
+// Titles displayed in the typing animation
+const titles = [
+    "Software Developer!",
+];
+
+const typingText = document.getElementById("typing-text");
+
+let titleIndex = 0;
+let text = "";
+let isDeleting = false;
+
+function typeEffect() {
+    const current = titles[titleIndex];
+    const speed = isDeleting ? 60 : 120;
 
     if (!isDeleting) {
-        // Typing forward
-        roleSpan.textContent = currentRole.substring(0, charIndex + 1);
-        charIndex++;
+        // Add one character
+        text = current.substring(0, text.length + 1);
+        typingText.textContent = text;
 
-        if (charIndex === currentRole.length) {
+        // Pause when the full title is displayed
+        if (text === current) {
             isDeleting = true;
-            setTimeout(typeRole, 1500); // pause at full text
+            setTimeout(typeEffect, 1200);
             return;
         }
     } else {
-        // Deleting
-        roleSpan.textContent = currentRole.substring(0, charIndex - 1);
-        charIndex--;
+        // Remove one character
+        text = current.substring(0, text.length - 1);
+        typingText.textContent = text;
 
-        if (charIndex === 0) {
+        // Move to the next title when deletion is complete
+        if (text === "") {
             isDeleting = false;
-            roleIndex = (roleIndex + 1) % roles.length; // next role
+            titleIndex = (titleIndex + 1) % titles.length;
         }
     }
 
-    setTimeout(typeRole, isDeleting ? 50 : typingSpeed);
+    setTimeout(typeEffect, speed);
 }
 
-typeRole();
+// Start the animation
+if (typingText) {
+    typeEffect();
+}
 
 
 
+// Contact Form
+const contactForm = document.getElementById("contactForm");
+const formStatus = document.getElementById("formStatus");
 
-const seeMoreBtn = document.querySelector('.see-more');
-  const hiddenCards = document.querySelectorAll('.card.hidden');
+if (contactForm) {
+    contactForm.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-  seeMoreBtn.addEventListener('click', () => {
-    const isHidden = hiddenCards[0].style.display === "none" || hiddenCards[0].style.display === "";
-    if (isHidden) {
-      // Show hidden projects
-      hiddenCards.forEach(card => card.style.display = "block");
-      seeMoreBtn.textContent = "See Less Projects";
-    } else {
-      // Hide extra projects
-      hiddenCards.forEach(card => card.style.display = "none");
-      seeMoreBtn.textContent = "See More Projects";
-      window.scrollTo({ top: document.getElementById('portfolio').offsetTop, behavior: 'smooth' });
-    }
-  });
+        formStatus.textContent =
+            "Your form is ready, but a backend or email service must be connected to send your message.";
+
+        formStatus.style.color = "#b45309";
+    });
+}
